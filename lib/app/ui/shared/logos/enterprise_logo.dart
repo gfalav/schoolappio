@@ -7,9 +7,9 @@ class EnterpriseLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 2,
-        right: 5,
-        left: 5,
+        top: 0,
+        right: 10,
+        left: 10,
       ),
       child: Container(
         height: 180,

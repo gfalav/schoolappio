@@ -12,8 +12,13 @@ class ResetPwdForm extends StatelessWidget {
     if (formKey.currentState!.validate()) {
       userController.resetPwd();
     } else {
-      Get.snackbar("Error de Formulario", "Formulario inválido",
-          snackPosition: SnackPosition.BOTTOM, backgroundColor: const Color.fromARGB(91, 247, 19, 2), duration: const Duration(seconds: 5));
+      Get.snackbar(
+        "Error de Formulario",
+        "Formulario inválido",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 

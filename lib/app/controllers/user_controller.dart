@@ -68,10 +68,22 @@ class UserController extends GetxController {
         } else {
           await res.user!.updatePhotoURL('');
         }
+        Get.snackbar(
+          "Welcome to SchoolAppIO",
+          "SignUp!!",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+          duration: const Duration(seconds: 5),
+        );
       }
-    } catch (e) {
-      e.printError();
-      e.printInfo();
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error on SignUp",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 
@@ -81,24 +93,55 @@ class UserController extends GetxController {
         email: emailController.text,
         password: passwordController.text,
       );
-    } catch (e) {
-      e.printError();
-      e.printInfo();
+      Get.snackbar(
+        "Welcome to SchoolAppIO",
+        "SignIn!!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error on SignIn",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 
   void signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
-    } catch (e) {
-      e.printError();
-      e.printInfo();
+      Get.snackbar(
+        "GoodBye",
+        "SignOut!!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error on SignOut",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 
   void resetPwd() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+      Get.snackbar(
+        "Email Sent to ${emailController.text}",
+        "Check your mailbox or spam",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     } catch (e) {
       e.printError();
       e.printInfo();
@@ -112,11 +155,23 @@ class UserController extends GetxController {
         var credential = EmailAuthProvider.credential(email: user.email!, password: oldPasswordController.text);
         await user.reauthenticateWithCredential(credential);
         await user.updatePassword(passwordController.text);
+        Get.snackbar(
+          "Password Updated",
+          "Remember your new password",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+          duration: const Duration(seconds: 5),
+        );
         Get.offAllNamed("/home");
       }
-    } catch (e) {
-      e.printError();
-      e.printInfo();
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error Updating your Password",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 
@@ -135,12 +190,24 @@ class UserController extends GetxController {
         } else {
           await user.updatePhotoURL('');
         }
+        Get.snackbar(
+          "User Updated",
+          "",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+          duration: const Duration(seconds: 5),
+        );
         setUser();
         Get.offAllNamed("/home");
       }
-    } catch (e) {
-      e.printError();
-      e.printInfo();
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error Updating User",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
+        duration: const Duration(seconds: 5),
+      );
     }
   }
 
