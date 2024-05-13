@@ -18,7 +18,7 @@ class SignInForm extends StatelessWidget {
         "Error de Formulario",
         "Formulario inválido",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Color.fromARGB(91, 142, 147, 254),
+        backgroundColor: const Color.fromARGB(91, 142, 147, 254),
         duration: const Duration(seconds: 5),
       );
     }
