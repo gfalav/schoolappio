@@ -5,38 +5,46 @@ class EnterpriseLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 180,
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 8, 1, 85),
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(35),
-          bottomRight: Radius.circular(35),
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 2,
+        right: 5,
+        left: 5,
       ),
-      child: Column(
-        children: [
-          Padding(
+      child: Container(
+        height: 180,
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 8, 1, 85),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(35),
+            bottomRight: Radius.circular(35),
+          ),
+        ),
+        child: Column(
+          children: [
+            Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Image.asset(
-                "lib/assets/images/SV.png",
+                "lib/assets/images/sv.png",
                 scale: 3,
-              )),
-          const Text(
-            "Instituto San Vicente",
-            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(
-              bottom: 10,
+              ),
             ),
-            child: Text(
-              "Juana Koslay - San Luis",
-              style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal),
+            const Text(
+              "Instituto San Vicente",
+              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
             ),
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.only(
+                bottom: 10,
+              ),
+              child: Text(
+                "Juana Koslay - San Luis",
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
