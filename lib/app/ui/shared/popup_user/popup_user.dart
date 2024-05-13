@@ -32,6 +32,14 @@ class PopupUser extends StatelessWidget {
                 })),
         PopupMenuItem(
             child: ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Cambia Password"),
+                onTap: () async {
+                  await Get.toNamed("/changepwd");
+                  Get.offAllNamed("/home");
+                })),
+        PopupMenuItem(
+            child: ListTile(
                 leading: const Icon(Icons.power_settings_new),
                 title: const Text("SignOut"),
                 onTap: () {

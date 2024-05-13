@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolappio/app/controllers/user_controller.dart';
 import 'package:schoolappio/app/ui/home/home.dart';
+import 'package:schoolappio/app/ui/users/change_pwd.dart';
 import 'package:schoolappio/app/ui/users/reset_pwd.dart';
 import 'package:schoolappio/app/ui/users/sign_in.dart';
 import 'package:schoolappio/app/ui/users/sign_up.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/signup", page: () => SignUp(), transition: Transition.fadeIn, transitionDuration: const Duration(milliseconds: 500)),
         GetPage(name: "/resetpwd", page: () => ResetPwd(), transition: Transition.fadeIn, transitionDuration: const Duration(milliseconds: 500)),
         GetPage(name: "/updateuser", page: () => UpdateUser(), transition: Transition.fadeIn, transitionDuration: const Duration(milliseconds: 500)),
+        GetPage(name: "/changepwd", page: () => ChangePwd(), transition: Transition.fadeIn, transitionDuration: const Duration(milliseconds: 500)),
       ],
     );
   }

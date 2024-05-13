@@ -19,6 +19,7 @@ class UserController extends GetxController {
   final emailController = TextEditingController(text: 'gfalav@gmail.com');
   final passwordController = TextEditingController(text: 'pppppp');
   final repasswordController = TextEditingController(text: 'pppppp');
+  final oldPasswordController = TextEditingController(text: 'pppppp');
 
   @override
   void onInit() {
@@ -104,8 +105,40 @@ class UserController extends GetxController {
     }
   }
 
+  void changePwd() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        var credential = EmailAuthProvider.credential(email: user.email!, password: oldPasswordController.text);
+        await user.reauthenticateWithCredential(credential);
+        await user.updatePassword(passwordController.text);
+        Get.offAllNamed("/home");
+      }
+    } catch (e) {
+      e.printError();
+      e.printInfo();
+    }
+  }
+
   void updateUsr() async {
-    try {} catch (e) {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await user.updateDisplayName(nameController.text); // actualiza nombre
+        if (imageName.value != '') {
+          var extension = imageName.split(".").last;
+          var storageRef = FirebaseStorage.instance.ref();
+          var imageRef = storageRef.child("avatars/${user.uid}.$extension");
+          await imageRef.putData(imageBytes.value, SettableMetadata(contentType: "image/$extension"));
+          var url = await imageRef.getDownloadURL();
+          await user.updatePhotoURL(url);
+        } else {
+          await user.updatePhotoURL('');
+        }
+        setUser();
+        Get.offAllNamed("/home");
+      }
+    } catch (e) {
       e.printError();
       e.printInfo();
     }
